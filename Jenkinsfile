@@ -25,10 +25,14 @@ pipeline {
         }
 
         stage ('Deploy') {
-            withCredentials([sshUserPrivateKey(credentialsId: 'deploy-server', keyFileVariable: 'keyFile')]) 
                steps {
-                   sh 'scp -r /home/azureuser/workspace/interviewinsights/build azureuser@server1:/var/www/app/'
-               }
+                withCredentials([sshUserPrivateKey(credentialsId: 'deploy-server', keyFileVariable: 'keyFile')]) {
+                    script {
+                          sh 'scp -r /home/azureuser/workspace/interviewinsights/build azureuser@server1:/var/www/app/'
+                    }
+                }
+                   
+            }
         }
 }
 
