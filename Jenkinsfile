@@ -26,7 +26,7 @@ pipeline {
 
         stage ('Deploy') {
                steps {
-                   sh 'scp -r /home/azureuser/workspace/interviewinsights/build /var/www/deploy1/'
+                   sh 'scp -r /home/azureuser/workspace/interviewinsights/build azureuser@server1:/var/www/app/'
                }
         }
 }
