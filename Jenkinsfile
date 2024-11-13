@@ -28,7 +28,7 @@ pipeline {
                steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'deploy-server', keyFileVariable: 'keyFile')]) {
                     script {
-                          sh 'scp -r /home/azureuser/workspace/interviewinsights/build azureuser@server1:/var/www/app/'
+                          sh 'scp -o StrictHostKeyChecking=no -i ${keyFile} -r /home/azureuser/workspace/interviewinsights/build azureuser@server1:/var/www/app/'
                     }
                 }
                    
